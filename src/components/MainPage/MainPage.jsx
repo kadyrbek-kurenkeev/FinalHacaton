@@ -3,7 +3,7 @@ import { Carousel } from "react-carousel-minimal";
 import { Grid } from "@mui/material";
 import { Box } from "@mui/system";
 
-const Home = () => {
+const MainPage = () => {
   //? images for carousel
 
   const data = [
@@ -94,4 +94,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default MainPage;
