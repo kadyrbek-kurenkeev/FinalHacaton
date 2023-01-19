@@ -1,0 +1,21 @@
+/* .footer_icon_down {
+  display: none !important;
+} */
+
+.footer_list {
+  list-style-type: none;
+  display: block;
+  padding: 0;
+}
+.footer_list li :hover {
+  color: rgba(255, 108, 72, 1);
+  padding: 0 0 0 5px;
+  transition-duration: 0.5s;
+}
+
+@media (max-width: 768px) {
+  .footer_main_body {
+    display: flex;
+    flex-direction: column;
+  }
+}
