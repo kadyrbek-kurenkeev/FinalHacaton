@@ -13,10 +13,6 @@ const Footer = () => {
   const [toggle2, setToggle2] = useState(false);
   const [toggle3, setToggle3] = useState(false);
 
-  const showFooterList = () => {
-    console.log("hello");
-  };
-
   return (
     <MDBFooter
       className="text-center text-lg-start text-muted"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import { productContext } from "../Contexts/ProductContext";
 
 const ProductCard = ({ item }) => {
-  const { toggleLike, deleteProduct } = React.useContext(productContext);
+  const { toggleLike, deleteProduct } = useContext(productContext);
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -20,17 +20,17 @@ const ProductCard = ({ item }) => {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {item.title}
+          {item.title} TITLE
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {item.description}
+          {item.description} DESCs
         </Typography>
         <Typography variant="caption" color="error">
-          {item.author}
+          {item.author} AUTHOR
         </Typography>
         <div>
           <Typography variant="body" color="error">
-            {item.likes}
+            {item.likes} LIKES
           </Typography>
         </div>
       </CardContent>
@@ -38,11 +38,11 @@ const ProductCard = ({ item }) => {
         <Button size="small" onClick={() => toggleLike(item.id)}>
           Like
         </Button>
-        {item.is_author ? (
-          <Button size="small" onClick={() => deleteProduct(item.id)}>
-            Delete
-          </Button>
-        ) : null}
+        {/* {item.is_author ? ( */}
+        <Button size="small" onClick={() => deleteProduct(item.id)}>
+          Delete
+        </Button>
+        {/* ) : null} */}
       </CardActions>
     </Card>
   );
