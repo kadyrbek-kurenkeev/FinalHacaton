@@ -4,59 +4,36 @@ import { Box } from "@mui/system";
 import Typography from "@mui/material/Typography";
 import ProductList from "../Product/ProductList";
 import { Container, Grid } from "@mui/material";
-import { MDBIcon } from "mdb-react-ui-kit";
+import { MDBCarousel, MDBCarouselItem, MDBIcon } from "mdb-react-ui-kit";
 
 const MainPage = () => {
-  //? images for carousel
-
-  const data = [
-    {
-      image:
-        "https://capricathemes.com/opencart/OPC10/OPC100231/image/cache/catalog/main-banner-2-1903x700.jpg",
-    },
-    {
-      image:
-        "https://capricathemes.com/opencart/OPC10/OPC100231/image/cache/catalog/main-banner-1-1903x700.jpg",
-    },
-  ];
-
-  // ? Styles for carousel
-
-  const captionStyle = {
-    fontSize: "2em",
-    fontWeight: "bold",
-  };
-  const slideNumberStyle = {
-    fontSize: "20px",
-    fontWeight: "bold",
-  };
   return (
     <Box
       sx={{
         width: "100%",
       }}
     >
-      <Carousel
-        data={data}
-        time={2000}
-        width="100%"
-        height="500px"
-        captionStyle={captionStyle}
-        slideNumberStyle={slideNumberStyle}
-        captionPosition="bottom"
-        automatic={true}
-        dots={true}
-        pauseIconColor="white"
-        pauseIconSize="40px"
-        slideBackgroundColor="darkgrey"
-        slideImageFit="cover"
-        thumbnailWidth="100px"
-        style={{
-          textAlign: "center",
-          maxWidth: "100%",
-          maxHeight: "500px",
-        }}
-      />
+      <MDBCarousel
+        showIndicators
+        showControls
+        fade
+        style={{ marginTop: "70px" }}
+      >
+        <MDBCarouselItem
+          className="w-100 d-block"
+          itemId={1}
+          src="https://capricathemes.com/opencart/OPC10/OPC100231/image/cache/catalog/main-banner-2-1903x700.jpg"
+          alt="..."
+        ></MDBCarouselItem>
+
+        <MDBCarouselItem
+          className="w-100 d-block"
+          itemId={2}
+          src="https://capricathemes.com/opencart/OPC10/OPC100231/image/cache/catalog/main-banner-1-1903x700.jpg"
+          alt="..."
+        ></MDBCarouselItem>
+      </MDBCarousel>
+
       <Container>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={3} mt={6}>

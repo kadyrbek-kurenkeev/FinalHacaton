@@ -38,11 +38,11 @@ const ProductCard = ({ item }) => {
         <Button size="small" onClick={() => toggleLike(item.id)}>
           Like
         </Button>
-        {/* {item.is_author ? ( */}
-        <Button size="small" onClick={() => deleteProduct(item.id)}>
-          Delete
-        </Button>
-        {/* ) : null} */}
+        {item.is_author ? (
+          <Button size="small" onClick={() => deleteProduct(item.id)}>
+            Delete
+          </Button>
+        ) : null}
       </CardActions>
     </Card>
   );

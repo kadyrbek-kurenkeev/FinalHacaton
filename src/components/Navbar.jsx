@@ -14,10 +14,15 @@ import MenuItem from "@mui/material/MenuItem";
 import Shop2Icon from "@mui/icons-material/Shop2";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import SpeedIcon from "@mui/icons-material/Speed";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { authContext } from "./Contexts/AuthContext";
-
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+import {
+  MDBDropdown,
+  MDBDropdownItem,
+  MDBDropdownMenu,
+  MDBDropdownToggle,
+  MDBIcon,
+} from "mdb-react-ui-kit";
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -43,64 +48,9 @@ function Navbar() {
   const navigate = useNavigate();
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed" sx={{ backgroundColor: "white" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "#64ffda",
-              textDecoration: "none",
-            }}
-          >
-            Магазины
-          </Typography>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "#64ffda",
-              textDecoration: "none",
-            }}
-          >
-            Акции
-          </Typography>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "#64ffda",
-              textDecoration: "none",
-            }}
-          >
-            Доставка и оплата
-          </Typography>
-          <Typography>
-            <SpeedIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -135,7 +85,6 @@ function Navbar() {
               </MenuItem>
             </Menu>
           </Box>
-          <SpeedIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -143,7 +92,7 @@ function Navbar() {
             href=""
             sx={{
               mr: 2,
-              display: { xs: "flex", md: "none" },
+              display: { xs: "flex", md: "block" },
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
@@ -152,86 +101,119 @@ function Navbar() {
               textDecoration: "none",
             }}
           >
-            BESTBBUYKG
+            <img
+              onClick={() => navigate("/")}
+              src="https://capricathemes.com/opencart/OPC10/OPC100231/image/catalog/logo.png"
+              alt="BookArt"
+            />
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {/* {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))} */}
-            {user ? (
-              <>
-                <Button
-                  onClick={() => navigate("/products")}
-                  sx={{ my: 2, color: "#64ffda", display: "block" }}
-                >
-                  Products
-                </Button>
-                <Button
-                  onClick={() => navigate("/admin")}
-                  sx={{ my: 2, color: "#64ffda", display: "block" }}
-                >
-                  Admin Page
-                </Button>
-                {user}
-                <Button
-                  onClick={() => logout()}
-                  sx={{ my: 2, color: "#64ffda", display: "block" }}
-                >
-                  Logout
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button
-                  onClick={() => navigate("/login")}
-                  sx={{ my: 2, color: "#64ffda", display: "block" }}
-                >
-                  Login
-                </Button>
-                <Button
-                  onClick={() => navigate("/register")}
-                  sx={{ my: 2, color: "#64ffda", display: "block" }}
-                >
-                  Register
-                </Button>
-              </>
-            )}
-          </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: {
+                xs: "none",
+                md: "flex",
+                justifyContent: "space-evenly",
+              },
+            }}
+          >
+            <Typography
+              sx={{
+                color: "black",
               }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+              <Link
+                style={{
+                  color: "black",
+                }}
+              >
+                <MDBIcon far icon="heart" size="lg" />
+              </Link>
+            </Typography>
+            <Typography sx={{ color: "black" }}>
+              <Link style={{ color: "black" }}>
+                <MDBIcon fas icon="shopping-basket" size="lg" />
+              </Link>
+            </Typography>
+            <Typography sx={{ color: "black" }}>
+              <MDBDropdown group className="shadow-0">
+                <MDBDropdownToggle color="light">
+                  <MDBIcon far icon="user" size="lg" />
+                </MDBDropdownToggle>
+                <MDBDropdownMenu>
+                  <Box
+                    sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+                  >
+                    {/* {pages.map((page) => (
+                        <Button
+                          key={page}
+                          onClick={handleCloseNavMenu}
+                          sx={{ my: 2, color: "white", display: "block" }}
+                        >
+                          {page}
+                        </Button>
+                      ))} */}
+
+                    {user === "admin" ? (
+                      <MDBDropdownItem link>
+                        <>
+                          <Button
+                            onClick={() => navigate("/products")}
+                            sx={{ my: 2, color: "black", display: "block" }}
+                          >
+                            Products
+                          </Button>
+                          <Button
+                            onClick={() => navigate("/admin")}
+                            sx={{ my: 2, color: "black", display: "block" }}
+                          >
+                            Admin Page
+                          </Button>
+
+                          <Button
+                            onClick={() => logout()}
+                            sx={{ my: 2, color: "black", display: "block" }}
+                          >
+                            Logout
+                          </Button>
+                        </>
+                      </MDBDropdownItem>
+                    ) : null}
+
+                    {user ? (
+                      <MDBDropdownItem link>
+                        <>
+                          <Button
+                            onClick={() => logout()}
+                            sx={{ my: 2, color: "black", display: "block" }}
+                          >
+                            Logout
+                          </Button>
+                        </>
+                      </MDBDropdownItem>
+                    ) : (
+                      <MDBDropdownItem link>
+                        <>
+                          <Button
+                            onClick={() => navigate("/login")}
+                            sx={{ my: 2, color: "black", display: "block" }}
+                          >
+                            Login
+                          </Button>
+                          <Button
+                            onClick={() => navigate("/register")}
+                            sx={{ my: 2, color: "black", display: "block" }}
+                          >
+                            Register
+                          </Button>
+                        </>
+                      </MDBDropdownItem>
+                    )}
+                  </Box>
+                </MDBDropdownMenu>
+              </MDBDropdown>
+            </Typography>
           </Box>
         </Toolbar>
       </Container>
