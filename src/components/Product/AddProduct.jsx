@@ -58,69 +58,69 @@ const AddProduct = () => {
 
   return (
     <div>
-      {/* {user === "admin@admin.com" ? ( */}
-      <Box
-        sx={{
-          width: "40vw",
-          margin: "0 auto",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Typography variant="h6" sx={{ m: 2 }}>
-          Add New Product
-        </Typography>
-        <TextField
-          sx={{ m: 1 }}
-          id="standard-basic"
-          label="Title"
-          variant="outlined"
-          fullWidth
-          name="title"
-          value={product.title}
-          onChange={handleInp}
-        />
-        <TextField
-          sx={{ m: 1 }}
-          id="standard-basic"
-          label="Description"
-          variant="outlined"
-          fullWidth
-          name="description"
-          value={product.description}
-          onChange={handleInp}
-        />
-        <TextField
-          sx={{ m: 1 }}
-          id="standard-basic"
-          label="Price"
-          variant="outlined"
-          fullWidth
-          name="price"
-          value={product.price}
-          onChange={handleInp}
-        />
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Category</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            label="сфеупщкн"
+      {user === "admin@admin.com" ? (
+        <Box
+          sx={{
+            width: "40vw",
+            margin: "0 auto",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h6" sx={{ m: 2 }}>
+            Add New Product
+          </Typography>
+          <TextField
+            sx={{ m: 1 }}
+            id="standard-basic"
+            label="Title"
+            variant="outlined"
+            fullWidth
+            name="title"
+            value={product.title}
             onChange={handleInp}
-            value={product.category}
-            name="category"
-          >
-            {categories?.map((item) => (
-              <MenuItem value={item.id} key={item.id}>
-                {item.title}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+          />
+          <TextField
+            sx={{ m: 1 }}
+            id="standard-basic"
+            label="Description"
+            variant="outlined"
+            fullWidth
+            name="description"
+            value={product.description}
+            onChange={handleInp}
+          />
+          <TextField
+            sx={{ m: 1 }}
+            id="standard-basic"
+            label="Price"
+            variant="outlined"
+            fullWidth
+            name="price"
+            value={product.price}
+            onChange={handleInp}
+          />
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Category</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="сфеупщкн"
+              onChange={handleInp}
+              value={product.category}
+              name="category"
+            >
+              {categories?.map((item) => (
+                <MenuItem value={item.id} key={item.id}>
+                  {item.title}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
-        {/* <input
+          {/* <input
           style={{
             marginTop: "10px",
           }}
@@ -129,40 +129,40 @@ const AddProduct = () => {
           name="image"
         /> */}
 
-        <MDBFile
-          id="customFile"
-          style={{
-            width: "350px",
-            maxWidth: "100%",
-            color: "#444",
-            padding: "5px",
-            background: "#fff",
-            margin: "10px",
-            borderRadius: "10px",
-            border: "1px solid #555",
-          }}
-        />
+          <MDBFile
+            id="customFile"
+            style={{
+              width: "350px",
+              maxWidth: "100%",
+              color: "#444",
+              padding: "5px",
+              background: "#fff",
+              margin: "10px",
+              borderRadius: "10px",
+              border: "1px solid #555",
+            }}
+          />
 
-        <Button
-          sx={{
-            m: 1,
-            color: "black",
-            width: "30%",
-          }}
-          variant="outlined"
-          fullWidth
-          size="large"
-          onClick={handleSave}
-        >
-          ADD PRODUCT
-        </Button>
-        {error ? (
-          <Alert severity="error">{error.map((item) => item)}</Alert>
-        ) : null}
-      </Box>
-      {/* ) : (
+          <Button
+            sx={{
+              m: 1,
+              color: "black",
+              width: "30%",
+            }}
+            variant="outlined"
+            fullWidth
+            size="large"
+            onClick={handleSave}
+          >
+            ADD PRODUCT
+          </Button>
+          {error ? (
+            <Alert severity="error">{error.map((item) => item)}</Alert>
+          ) : null}
+        </Box>
+      ) : (
         <>You are not admin</>
-      )} */}
+      )}
     </div>
   );
 };

@@ -29,7 +29,7 @@ const AuthContextProvider = ({ children }) => {
       console.log(res.data);
 
       localStorage.setItem("token", JSON.stringify(res.data));
-      localStorage.setItem("username", email);
+      localStorage.setItem("email", email);
 
       setUser(email);
       navigate("/");
