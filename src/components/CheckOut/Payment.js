@@ -100,10 +100,10 @@ export default function PaymentForm() {
                 sx={{
                   mt: 3,
                   ml: 1,
-                  backgroundColor: "#009f7f",
+                  backgroundColor: "#ff6c48",
                   color: "white",
                   "&:hover": {
-                    background: "#009f72",
+                    background: "red",
                   },
                 }}
               >
@@ -116,10 +116,10 @@ export default function PaymentForm() {
               sx={{
                 mt: 3,
                 ml: 1,
-                backgroundColor: "#009f7f",
+                backgroundColor: "#ff6c48",
                 color: "white",
                 "&:hover": {
-                  background: "#009f72",
+                  background: "red",
                 },
               }}
             >

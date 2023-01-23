@@ -18,7 +18,7 @@ function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         products: action.payload,
-        pages: Math.ceil(action.payload.count / 5),
+        pages: Math.ceil(action.payload.count / 4),
       };
     case "GET_CATEGORIES":
       return { ...state, categories: action.payload };
@@ -29,6 +29,7 @@ function reducer(state = INIT_STATE, action) {
 
 const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
+
   const [error, setError] = useState([]);
 
   const navigate = useNavigate();
@@ -109,11 +110,11 @@ const ProductContextProvider = ({ children }) => {
         },
       };
 
-      const res = await axios(`${API_PRODUCTS}/${id}/toggle_like/`, config);
+      const res = await axios.post(`${API_PRODUCTS}/${id}/like/`, config);
       getProducts();
     } catch (e) {
       console.log(e);
-      //~ setError(e.response.data);
+      // setError(e.response.data);
     }
   }
 
