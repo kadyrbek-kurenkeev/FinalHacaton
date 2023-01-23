@@ -149,16 +149,16 @@ function Navbar() {
                     sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
                   >
                     {/* {pages.map((page) => (
-                        <Button
-                          key={page}
-                          onClick={handleCloseNavMenu}
-                          sx={{ my: 2, color: "white", display: "block" }}
-                        >
-                          {page}
-                        </Button>
-                      ))} */}
+                      <Button
+                        key={page}
+                        onClick={handleCloseNavMenu}
+                        sx={{ my: 2, color: "white", display: "block" }}
+                      >
+                        {page}
+                      </Button>
+                    ))} */}
 
-                    {user == "dcabatar@gmail.com" ? (
+                    {user === "dcabatar@gmail.com" ? (
                       <MDBDropdownItem link>
                         <>
                           <Button
@@ -173,21 +173,11 @@ function Navbar() {
                           >
                             Admin Page
                           </Button>
-
-                          <Button
-                            onClick={() => logout()}
-                            sx={{ my: 2, color: "black", display: "block" }}
-                          >
-                            Logout
-                          </Button>
                         </>
                       </MDBDropdownItem>
-                    ) : (
-                      // null
-                      <>Hello</>
-                    )}
+                    ) : null}
 
-                    {/* {user ? (
+                    {user ? (
                       <MDBDropdownItem link>
                         <>
                           <Button
@@ -215,7 +205,7 @@ function Navbar() {
                           </Button>
                         </>
                       </MDBDropdownItem>
-                    )} */}
+                    )}
                   </Box>
                 </MDBDropdownMenu>
               </MDBDropdown>
