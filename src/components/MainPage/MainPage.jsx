@@ -212,6 +212,7 @@ const MainPage = () => {
             Our Products
           </Typography>
         </Box>
+        <ProductList />
       </Container>
     </Box>
   );

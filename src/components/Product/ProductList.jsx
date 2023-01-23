@@ -2,7 +2,7 @@ import { Pagination } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { productContext } from "../Contexts/ProductContext";
+import { productContext } from "../Context/ProductContext";
 import ProductCard from "./ProductCard";
 
 const ProductList = () => {

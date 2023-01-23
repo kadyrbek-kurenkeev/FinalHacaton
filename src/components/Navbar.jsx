@@ -15,7 +15,7 @@ import Shop2Icon from "@mui/icons-material/Shop2";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import SpeedIcon from "@mui/icons-material/Speed";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { authContext } from "./Contexts/AuthContext";
+import { authContext } from "./Context/AuthContext";
 import {
   MDBDropdown,
   MDBDropdownItem,
@@ -131,7 +131,10 @@ function Navbar() {
                 <MDBIcon far icon="heart" size="lg" />
               </Link>
             </Typography>
-            <Typography sx={{ color: "black" }}>
+            <Typography
+              sx={{ color: "black" }}
+              onClick={() => navigate("/cart")}
+            >
               <Link style={{ color: "black" }}>
                 <MDBIcon fas icon="shopping-basket" size="lg" />
               </Link>
@@ -155,7 +158,7 @@ function Navbar() {
                         </Button>
                       ))} */}
 
-                    {user === "admin" ? (
+                    {user == "dcabatar@gmail.com" ? (
                       <MDBDropdownItem link>
                         <>
                           <Button
@@ -179,9 +182,12 @@ function Navbar() {
                           </Button>
                         </>
                       </MDBDropdownItem>
-                    ) : null}
+                    ) : (
+                      // null
+                      <>Hello</>
+                    )}
 
-                    {user ? (
+                    {/* {user ? (
                       <MDBDropdownItem link>
                         <>
                           <Button
@@ -209,7 +215,7 @@ function Navbar() {
                           </Button>
                         </>
                       </MDBDropdownItem>
-                    )}
+                    )} */}
                   </Box>
                 </MDBDropdownMenu>
               </MDBDropdown>

@@ -14,7 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { Link as RouterLink } from "react-router-dom";
-import { authContext } from "../Contexts/AuthContext";
+import { authContext } from "../Context/AuthContext";
 import { FormControl, Radio, RadioGroup } from "@mui/material";
 
 function Copyright(props) {
@@ -94,7 +94,7 @@ export default function Register() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Register
           </Typography>
           <Box
             component="form"

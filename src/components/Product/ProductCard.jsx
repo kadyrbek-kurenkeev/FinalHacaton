@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { productContext } from "../Contexts/ProductContext";
+import { productContext } from "../Context/ProductContext";
 
 const ProductCard = ({ item }) => {
   const { toggleLike, deleteProduct } = useContext(productContext);
@@ -23,15 +23,15 @@ const ProductCard = ({ item }) => {
           {item.title} TITLE
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {item.description} DESCs
+          {item.descriptions} DESCs
         </Typography>
         <Typography variant="caption" color="error">
           {item.author} AUTHOR
         </Typography>
         <div>
-          <Typography variant="body" color="error">
+          {/* <Typography variant="body" color="error">
             {item.likes} LIKES
-          </Typography>
+          </Typography> */}
         </div>
       </CardContent>
       <CardActions>
