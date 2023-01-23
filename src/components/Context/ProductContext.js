@@ -17,7 +17,7 @@ function reducer(state = INIT_STATE, action) {
     case "GET_PRODUCTS":
       return {
         ...state,
-        products: action.payload.results,
+        products: action.payload,
         pages: Math.ceil(action.payload.count / 5),
       };
     case "GET_CATEGORIES":
@@ -47,6 +47,7 @@ const ProductContextProvider = ({ children }) => {
         `${API_PRODUCTS}/${window.location.search}`,
         config
       );
+      console.log(res.data);
 
       dispatch({
         type: "GET_PRODUCTS",
