@@ -142,7 +142,7 @@ function Navbar() {
             <Typography sx={{ color: "black" }}>
               <MDBDropdown group className="shadow-0">
                 <MDBDropdownToggle color="light">
-                  <MDBIcon far icon="user" size="lg" />
+                  <MDBIcon far icon="user" size="lg"/>
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
                   <Box
@@ -183,8 +183,23 @@ function Navbar() {
                         </>
                       </MDBDropdownItem>
                     ) : (
-                      // null
-                      <>Hello</>
+                      <MDBDropdownItem link>
+                        <>
+                          <Button
+                            onClick={() => navigate("/Login")}
+                            sx={{ my: 2, color: "black", display: "block" }}
+                          >
+                           Login
+                          </Button>
+
+                          <Button
+                            onClick={() => navigate("/Register")}
+                            sx={{ my: 2, color: "black", display: "block" }}
+                          >
+                            Registration
+                          </Button>
+                        </>
+                      </MDBDropdownItem>
                     )}
 
                     {/* {user ? (
