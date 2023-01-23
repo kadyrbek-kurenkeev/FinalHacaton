@@ -158,7 +158,7 @@ function Navbar() {
                         </Button>
                       ))} */}
 
-                    {user === "admin@admin.com" ? (
+                    {user == "dcabatar@gmail.com" ? (
                       <MDBDropdownItem link>
                         <>
                           <Button
@@ -182,9 +182,12 @@ function Navbar() {
                           </Button>
                         </>
                       </MDBDropdownItem>
-                    ) : null}
+                    ) : (
+                      // null
+                      <>Hello</>
+                    )}
 
-                    {user ? (
+                    {/* {user ? (
                       <MDBDropdownItem link>
                         <>
                           <Button
@@ -212,7 +215,7 @@ function Navbar() {
                           </Button>
                         </>
                       </MDBDropdownItem>
-                    )}
+                    )} */}
                   </Box>
                 </MDBDropdownMenu>
               </MDBDropdown>

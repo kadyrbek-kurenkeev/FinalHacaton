@@ -23,15 +23,15 @@ const ProductCard = ({ item }) => {
           {item.title} TITLE
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {item.description} DESCs
+          {item.descriptions} DESCs
         </Typography>
         <Typography variant="caption" color="error">
           {item.author} AUTHOR
         </Typography>
         <div>
-          <Typography variant="body" color="error">
+          {/* <Typography variant="body" color="error">
             {item.likes} LIKES
-          </Typography>
+          </Typography> */}
         </div>
       </CardContent>
       <CardActions>
