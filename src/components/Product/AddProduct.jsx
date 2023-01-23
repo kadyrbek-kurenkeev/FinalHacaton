@@ -127,7 +127,7 @@ const AddProduct = () => {
           value={product.amount}
           onChange={handleInp}
         />
-        <FormControl fullWidth>
+        {/* <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Category</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -143,7 +143,17 @@ const AddProduct = () => {
               </MenuItem>
             ))}
           </Select>
-        </FormControl>
+        </FormControl> */}
+        <TextField
+          sx={{ m: 1 }}
+          id="standard-basic"
+          label="Category"
+          variant="outlined"
+          fullWidth
+          name="category"
+          value={product.category}
+          onChange={handleInp}
+        />
         <MDBFile
           id="customFile"
           style={{
