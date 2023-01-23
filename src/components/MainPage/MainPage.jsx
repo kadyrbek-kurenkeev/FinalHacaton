@@ -1,46 +1,31 @@
 import React from "react";
 import { Carousel } from "react-carousel-minimal";
-import { Grid } from "@mui/material";
+import {CardActionArea, cardClasses, Grid} from "@mui/material";
 import { Box } from "@mui/system";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import CardActions from "@mui/material/CardActions";
+import Button from "@mui/material/Button";
 
-const MainPage = () => {
+const MainPage = (relative = relative,
+                  absolute = absolute
+) => {
   //? images for carousel
 
   const data = [
     {
+
       image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
-      caption: `<div>
-                  San Francisco
-                  <br/>
-                  Next line
-                </div>`,
+        "https://capricathemes.com/opencart/OPC10/OPC100231/image/cache/catalog/main-banner-2-1903x700.jpg",
+
     },
     {
       image:
-        "https://cdn.britannica.com/s:800x450,c:crop/35/204435-138-2F2B745A/Time-lapse-hyper-lapse-Isle-Skye-Scotland.jpg",
-      caption: "Scotland",
+        "https://capricathemes.com/opencart/OPC10/OPC100231/image/cache/catalog/main-banner-1-1903x700.jpg",
     },
-    {
-      image:
-        "https://static2.tripoto.com/media/filter/tst/img/735873/TripDocument/1537686560_1537686557954.jpg",
-      caption: "Darjeeling",
-    },
-    {
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Palace_of_Fine_Arts_%2816794p%29.jpg/1200px-Palace_of_Fine_Arts_%2816794p%29.jpg",
-      caption: "San Francisco",
-    },
-    {
-      image:
-        "https://i.natgeofe.com/n/f7732389-a045-402c-bf39-cb4eda39e786/scotland_travel_4x3.jpg",
-      caption: "Scotland",
-    },
-    {
-      image:
-        "https://www.tusktravel.com/blog/wp-content/uploads/2020/07/Best-Time-to-Visit-Darjeeling-for-Honeymoon.jpg",
-      caption: "Darjeeling",
-    },
+
   ];
 
   // ? Styles for carousel
@@ -53,21 +38,22 @@ const MainPage = () => {
     fontSize: "20px",
     fontWeight: "bold",
   };
+
   return (
     <div>
-      MainPage
       <Box
         sx={{
           width: "100%",
           //  backgroundColor: "rgba(243,244,246)"
         }}
       >
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={9} className="grid_home_left">
+        <Grid container >
+          <Grid item xs={12} className="grid_home">
             <Carousel
               data={data}
               time={2000}
               width="100%"
+              height='100%'
               // width="850px"
               // height="500px"
               captionStyle={captionStyle}
@@ -82,14 +68,150 @@ const MainPage = () => {
               thumbnailWidth="100px"
               style={{
                 textAlign: "center",
-                maxWidth: "870px",
-                maxHeight: "400px",
-                margin: "40px auto",
+                maxWidth: "100%",
+                maxHeight: "100%",
               }}
             />
           </Grid>
         </Grid>
+
       </Box>
+      <Box sx={{ display: 'flex' ,justifyContent:'center',alignItems:'center'}} >
+        <Grid   container justifyContent='space-around'  xs={12}
+              sx={{py: 10}}
+        >
+
+          <Grid item xs={3}>
+            first
+          </Grid>
+          <Grid item xs={3}>
+            second
+          </Grid>
+          <Grid item xs={3}>
+            third
+          </Grid>
+          <Grid item xs={3}>
+            fourth
+          </Grid>
+        </Grid>
+      </Box>
+
+      <Box>
+        <Grid container justifyContent='space-around' >
+          <CardContent item xs={3}
+                       style={{
+                         position: 'relative',
+                       }}
+          >
+            <Grid>
+              <img src="https://capricathemes.com/opencart/OPC10/OPC100231/image/catalog/sub-banner-1.jpg" alt=""/></Grid>
+
+              <Grid>
+                <span>10% Discount Million Dollar Brands</span>
+                <br/>
+                <a href="#">Shop Now</a>
+            </Grid>
+
+          </CardContent>
+          <CardContent item xs={3} >
+            <Grid >
+              <img src="https://capricathemes.com/opencart/OPC10/OPC100231/image/catalog/sub-banner-2.jpg" alt=""/>
+              <Grid>
+                <span>10% Discount Million Dollar Brands</span>
+                <br/>
+                <a href="#">Shop Now</a>
+              </Grid>
+            </Grid>
+
+          </CardContent>
+          <CardContent >
+            <Grid>
+              <img src="https://capricathemes.com/opencart/OPC10/OPC100231/image/catalog/sub-banner-3.jpg" alt=""/>
+              <Grid>
+                <span>10% Discount Million Dollar Brands</span>
+                <br/>
+                <a href="#">Shop Now</a>
+              </Grid>
+            </Grid>
+
+          </CardContent>
+        </Grid>
+        <Typography pt={5}
+        sx={{
+          fontWeight: 900,
+          fontSize: 30,
+          textAlign: "center"
+
+        }}
+        >Trending Products
+        </Typography>
+
+
+        <Grid container xs={15} >
+          <CardContent item xs={3}
+                       style={{
+                         position: 'relative',
+                       }}
+          >
+            <Grid>
+              <img src="https://capricathemes.com/opencart/OPC10/OPC100231/image/catalog/sub-banner-1.jpg" alt=""/></Grid>
+
+            <Grid>
+              <span>10% Discount Million Dollar Brands</span>
+              <br/>
+              <a href="#">Shop Now</a>
+            </Grid>
+
+          </CardContent>
+          <CardContent item xs={3} >
+            <Grid >
+              <img src="https://capricathemes.com/opencart/OPC10/OPC100231/image/catalog/sub-banner-2.jpg" alt=""/>
+              <Grid>
+                <span>10% Discount Million Dollar Brands</span>
+                <br/>
+                <a href="#">Shop Now</a>
+              </Grid>
+            </Grid>
+
+          </CardContent>
+          <CardContent item xs={3}>
+            <Grid>
+              <img src="https://capricathemes.com/opencart/OPC10/OPC100231/image/catalog/sub-banner-3.jpg" alt=""/>
+              <Grid>
+                <span>10% Discount Million Dollar Brands</span>
+                <br/>
+                <a href="#">Shop Now</a>
+              </Grid>
+            </Grid>
+
+          </CardContent>
+          <CardContent item xs={3} >
+            <Grid>
+              <img src="https://capricathemes.com/opencart/OPC10/OPC100231/image/catalog/sub-banner-3.jpg" alt=""/>
+              <Grid>
+                <span>10% Discount Million Dollar Brands</span>
+                <br/>
+                <a href="#">Shop Now</a>
+              </Grid>
+            </Grid>
+
+          </CardContent>
+          <CardContent item xs={3} >
+            <Grid>
+              <img src="https://capricathemes.com/opencart/OPC10/OPC100231/image/catalog/sub-banner-3.jpg" alt=""/>
+              <Grid>
+                <span>10% Discount Million Dollar Brands</span>
+                <br/>
+                <a href="#">Shop Now</a>
+              </Grid>
+            </Grid>
+
+          </CardContent>
+        </Grid>
+
+
+      </Box>
+
     </div>
   );
 };
