@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { authContext } from "../Contexts/AuthContext";
 import { productContext } from "../Contexts/ProductContext";
+import { MDBFile } from "mdb-react-ui-kit";
 
 const AddProduct = () => {
   const { user } = useContext(authContext);
@@ -57,7 +58,6 @@ const AddProduct = () => {
 
   return (
     <div>
-      {" "}
       {user === "admin@admin.com" ? (
         <Box
           sx={{
@@ -70,7 +70,7 @@ const AddProduct = () => {
           }}
         >
           <Typography variant="h6" sx={{ m: 2 }}>
-            Add new product
+            Add New Product
           </Typography>
           <TextField
             sx={{ m: 1 }}
@@ -120,15 +120,34 @@ const AddProduct = () => {
             </Select>
           </FormControl>
 
-          <input
-            type="file"
-            // hidden
-            name="image"
+          {/* <input
+          style={{
+            marginTop: "10px",
+          }}
+          type="file"
+          // hidden
+          name="image"
+        /> */}
+
+          <MDBFile
+            id="customFile"
+            style={{
+              width: "350px",
+              maxWidth: "100%",
+              color: "#444",
+              padding: "5px",
+              background: "#fff",
+              margin: "10px",
+              borderRadius: "10px",
+              border: "1px solid #555",
+            }}
           />
 
           <Button
             sx={{
               m: 1,
+              color: "black",
+              width: "30%",
             }}
             variant="outlined"
             fullWidth

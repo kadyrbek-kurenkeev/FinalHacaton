@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { Link as RouterLink } from "react-router-dom";
 import { authContext } from "../Contexts/AuthContext";
+import { FormControl, Radio, RadioGroup } from "@mui/material";
 
 function Copyright(props) {
   return (
@@ -39,22 +40,41 @@ const theme = createTheme();
 export default function Register() {
   const { register } = React.useContext(authContext);
 
+  const [username, setUsername] = React.useState("");
+
   const [email, setEmail] = React.useState("");
 
   const [password, setPassword] = React.useState("");
 
   const [confirmPassword, setConfirmPassword] = React.useState("");
 
+  const [gender, setGender] = React.useState("");
+
+  const [contact, setContact] = React.useState("");
+
   function handleSubmit() {
-    if (!email.trim() || !password.trim() || !confirmPassword.trim()) {
+    if (
+      !email.trim() ||
+      !password.trim() ||
+      !confirmPassword.trim() ||
+      !username.trim() ||
+      !contact.trim() ||
+      !gender.trim()
+    ) {
       alert("Заполните поля!");
       return;
     }
 
     let formData = new FormData();
+    formData.append("username", username);
+
     formData.append("email", email);
     formData.append("password", password);
     formData.append("password_confirm", confirmPassword);
+
+    formData.append("gender", gender);
+    formData.append("contact", contact);
+
     register(formData);
   }
 
@@ -82,6 +102,18 @@ export default function Register() {
             noValidate
             sx={{ mt: 1 }}
           >
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="User name"
+              name="username"
+              autoComplete="username"
+              autoFocus
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
             <TextField
               margin="normal"
               required
@@ -118,10 +150,51 @@ export default function Register() {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+
+            <FormControl component="fieldset">
+              <Typography>Your Gender :</Typography>
+              <RadioGroup
+                row
+                aria-label="position"
+                name="position"
+                defaultValue="top"
+                onChange={(e) => {
+                  setGender(e.target.value);
+                }}
+              >
+                <FormControlLabel
+                  value="Male"
+                  control={<Radio color="primary" />}
+                  label="Male"
+                  labelPlacement="end"
+                />
+                <FormControlLabel
+                  value="female"
+                  control={<Radio color="primary" />}
+                  label="female"
+                  labelPlacement="end"
+                />
+                <FormControlLabel
+                  value="unisex"
+                  control={<Radio color="primary" />}
+                  label="unisex"
+                  labelPlacement="end"
+                />
+              </RadioGroup>
+            </FormControl>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="contact"
+              label="Phone number"
+              name="contact"
+              autoComplete="contact"
+              autoFocus
+              value={contact}
+              onChange={(e) => setContact(e.target.value)}
             />
+
             <Button
               // type="submit"
               onClick={handleSubmit}
