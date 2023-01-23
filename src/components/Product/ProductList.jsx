@@ -9,6 +9,7 @@ const ProductList = () => {
   const { getProducts, products, pages } = useContext(productContext);
 
   const [currentPage, setCurrentPage] = useState(1);
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -28,12 +29,20 @@ const ProductList = () => {
   console.log(products);
 
   return (
-    <div>
-      <Box>
-        ProductList
-        {products.map((item) => (
-          <ProductCard key={item.id} item={item} />
-        ))}
+    <div
+      style={{
+        marginTop: "70px",
+        alignItems: "center",
+        textAlign: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Box style={{ display: "flex" }}>
+        {products ? (
+          products.map((item) => <ProductCard key={item.id} item={item} />)
+        ) : (
+          <h2>Loading ...</h2>
+        )}
       </Box>
       <Box>
         <Pagination

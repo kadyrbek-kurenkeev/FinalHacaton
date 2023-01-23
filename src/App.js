@@ -6,21 +6,24 @@ import ProductContextProvider from "./components/Context/ProductContext";
 import AuthContextProvider from "./components/Context/AuthContext";
 import CheckOutContextProvider from "./components/Context/CheckOutContextProvider";
 import CartContextProvider from "./components/Context/CartContextProvider";
+import LikeContextProvider from "./components/Context/LikeContextProvider";
 
 function App() {
   return (
     <div>
-      <CheckOutContextProvider>
-        <CartContextProvider>
-          <ProductContextProvider>
-            <AuthContextProvider>
-              <Navbar />
-              <MainRoutes />
-              <Footer />
-            </AuthContextProvider>
-          </ProductContextProvider>
-        </CartContextProvider>
-      </CheckOutContextProvider>
+      <LikeContextProvider>
+        <CheckOutContextProvider>
+          <CartContextProvider>
+            <ProductContextProvider>
+              <AuthContextProvider>
+                <Navbar />
+                <MainRoutes />
+                <Footer />
+              </AuthContextProvider>
+            </ProductContextProvider>
+          </CartContextProvider>
+        </CheckOutContextProvider>
+      </LikeContextProvider>
     </div>
   );
 }

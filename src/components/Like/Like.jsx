@@ -8,9 +8,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
-import { cartContext } from "../Context/CartContextProvider";
-import "./cart.css";
 import { useNavigate } from "react-router-dom";
+import { likeContext } from "../Context/LikeContextProvider";
+import { cartContext } from "../Context/CartContextProvider";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -22,29 +22,29 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
+// const StyledTableRow = styled(TableRow)(({ theme }) => ({
+//   "&:nth-of-type(odd)": {
+//     backgroundColor: theme.palette.action.hover,
+//   },
 
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
+//   "&:last-child td, &:last-child th": {
+//     border: 0,
+//   },
+// }));
 
-export default function Cart() {
-  const { getCart, cart, changeProductCount, deleteCartProduct } =
-    useContext(cartContext);
+export default function Like() {
+  const { getLike, like, changeProductCount, deleteLikeProduct } =
+    useContext(likeContext);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    getCart();
+    getLike();
   }, []);
 
   const cartCleaner = () => {
-    localStorage.removeItem("cart");
-    getCart();
+    localStorage.removeItem("like");
+    getLike();
   };
 
   return (
@@ -59,13 +59,11 @@ export default function Cart() {
             <StyledTableCell align="center">Name</StyledTableCell>
             <StyledTableCell align="center">Category</StyledTableCell>
             <StyledTableCell align="center">Price</StyledTableCell>
-            <StyledTableCell align="center">Count</StyledTableCell>
-            <StyledTableCell align="center">subPrice</StyledTableCell>
-            <StyledTableCell align="center">-</StyledTableCell>
+            <StyledTableCell align="center">Delete</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {cart?.products.map((row) => (
+          {like?.products.map((row) => (
             <TableRow key={row.item.id}>
               <StyledTableCell align="center">
                 <img src={row.item.img} alt="" width={70} height={70} />
@@ -76,18 +74,6 @@ export default function Cart() {
               </StyledTableCell>
               <StyledTableCell align="center">{row.item.price}</StyledTableCell>
               <StyledTableCell align="center">
-                <input
-                  type="number"
-                  min={1}
-                  max={100}
-                  value={row.count}
-                  onChange={(e) => {
-                    changeProductCount(e.target.value, row.item.id);
-                  }}
-                />
-              </StyledTableCell>
-              <StyledTableCell align="center">{row.subPrice}</StyledTableCell>
-              <StyledTableCell align="center">
                 <Button
                   sx={{
                     backgroundColor: "#ff6c48",
@@ -96,7 +82,7 @@ export default function Cart() {
                     },
                     color: "white",
                   }}
-                  onClick={() => deleteCartProduct(row.item.id)}
+                  onClick={() => deleteLikeProduct(row.item.id)}
                 >
                   Delete
                 </Button>
@@ -128,23 +114,6 @@ export default function Cart() {
           Clear All
         </Button>
 
-        <Button
-          sx={{
-            backgroundColor: "#ff6c48",
-            "&:hover": {
-              background: "red",
-            },
-            color: "white",
-            marginRight: "15px",
-            marginTop: "10px",
-            marginBottom: "10px",
-          }}
-          onClick={() => {
-            navigate("/checkout");
-          }}
-        >
-          Order {cart.totalPrice}$
-        </Button>
         <Button
           sx={{
             backgroundColor: "#ff6c48",

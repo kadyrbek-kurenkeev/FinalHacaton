@@ -122,6 +122,7 @@ function Navbar() {
               sx={{
                 color: "black",
               }}
+              onClick={() => navigate("/like")}
             >
               <Link
                 style={{
