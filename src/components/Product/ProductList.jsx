@@ -30,10 +30,12 @@ const ProductList = () => {
   }, [currentPage]);
 
   function currentData() {
-    const begin = (currentPage - 1) * 4;
-    const end = begin + 4;
+    const begin = (currentPage - 1) * 8;
+    const end = begin + 8;
     return products.slice(begin, end);
   }
+
+  console.log(pages);
 
   console.log(products);
 
@@ -46,29 +48,19 @@ const ProductList = () => {
         justifyContent: "center",
       }}
     >
-      {user ? (
-        // <Typography>HEllo</Typography>
-
-        <Box
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          {products ? (
-            currentData().map((item) => (
-              <ProductCard key={item.id} item={item} />
-            ))
-          ) : (
-            <h2>Loading ...</h2>
-          )}
-        </Box>
-      ) : (
-        <h2 style={{ color: "red", marginTop: "200px", marginBottom: "200px" }}>
-          If you want to see products, please login or register.
-        </h2>
-      )}
+      <Box
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+        }}
+      >
+        {products ? (
+          currentData().map((item) => <ProductCard key={item.id} item={item} />)
+        ) : (
+          <h2>Loading ...</h2>
+        )}
+      </Box>
 
       <Box>
         <Pagination
