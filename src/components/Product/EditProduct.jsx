@@ -1,38 +1,32 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Alert,
-  Box,
-  Button,
-  FormControl,
-  Input,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Alert, Box, Button, TextField, Typography } from "@mui/material";
 import { authContext } from "../Context/AuthContext";
 import { productContext } from "../Context/ProductContext";
 import { MDBFile } from "mdb-react-ui-kit";
+import { useParams } from "react-router-dom";
 
-const AddProduct = () => {
+const Edit = () => {
   const { user } = useContext(authContext);
-  const { addProducts, error, categories, getCategories } =
-    useContext(productContext);
+  const {
+    addProducts,
+    error,
+    // getCategories,
+    getProductDetails,
+    saveEditProduct,
+    productDetails,
+  } = useContext(productContext);
+
+  const params = useParams();
+
+  //   useEffect(() => {
+  //     getCategories();
+  //   }, []);
 
   useEffect(() => {
-    getCategories();
+    getProductDetails(params.id);
   }, []);
 
-  const [product, setProduct] = useState({
-    name: "",
-    author: "",
-    description: "",
-    price: "",
-    category: "",
-    image: "",
-    amount: "",
-  });
+  const [product, setProduct] = useState(productDetails);
 
   const handleInp = (e) => {
     if (e.target.name === "image") {
@@ -58,7 +52,7 @@ const AddProduct = () => {
     newProduct.append("image", product.image);
     newProduct.append("amount", product.amount);
 
-    addProducts(newProduct);
+    saveEditProduct(newProduct);
   }
 
   return (
@@ -75,7 +69,7 @@ const AddProduct = () => {
           }}
         >
           <Typography variant="h6" sx={{ m: 2 }}>
-            Add New Product
+            Edit Product
           </Typography>
           <TextField
             sx={{ m: 1 }}
@@ -84,7 +78,7 @@ const AddProduct = () => {
             variant="outlined"
             fullWidth
             name="name"
-            value={product.name}
+            value={productDetails.name || ""}
             onChange={handleInp}
           />
           <TextField
@@ -94,7 +88,7 @@ const AddProduct = () => {
             variant="outlined"
             fullWidth
             name="author"
-            value={product.author}
+            value={product.author || ""}
             onChange={handleInp}
           />
           <TextField
@@ -104,7 +98,7 @@ const AddProduct = () => {
             variant="outlined"
             fullWidth
             name="description"
-            value={product.description}
+            value={product.description || ""}
             onChange={handleInp}
           />
           <TextField
@@ -114,7 +108,7 @@ const AddProduct = () => {
             variant="outlined"
             fullWidth
             name="price"
-            value={product.price}
+            value={product.price || ""}
             onChange={handleInp}
           />
           <TextField
@@ -124,7 +118,7 @@ const AddProduct = () => {
             variant="outlined"
             fullWidth
             name="amount"
-            value={product.amount}
+            value={product.amount || ""}
             onChange={handleInp}
           />
           {/* <FormControl fullWidth>
@@ -151,18 +145,18 @@ const AddProduct = () => {
             variant="outlined"
             fullWidth
             name="category"
-            value={product.category}
+            value={product.category || ""}
             onChange={handleInp}
           />
           <MDBFile
             id="customFile"
-            name="image"
+            value={product.image || ""}
             onChange={handleInp}
             style={{
               width: "350px",
               maxWidth: "100%",
               color: "#444",
-              padding: "10px",
+              padding: "5px",
               background: "#fff",
               margin: "10px",
               borderRadius: "10px",
@@ -181,7 +175,7 @@ const AddProduct = () => {
             size="large"
             onClick={handleSave}
           >
-            ADD PRODUCT
+            Edit
           </Button>
           {error ? (
             <Alert severity="error">{error.map((item) => item)}</Alert>
@@ -207,4 +201,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default Edit;
