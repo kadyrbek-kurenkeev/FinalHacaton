@@ -19,7 +19,7 @@ function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         products: action.payload,
-        pages: Math.ceil(action.payload.count / 5),
+        pages: Math.ceil(action.payload.length / 8),
       };
     case "GET_CATEGORIES":
       return { ...state, categories: action.payload };
@@ -39,18 +39,7 @@ const ProductContextProvider = ({ children }) => {
 
   async function getProducts() {
     try {
-      const token = JSON.parse(localStorage.getItem("token"));
-      const Authorization = `Bearer ${token.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
-
-      const res = await axios(
-        `${API_PRODUCTS}/${window.location.search}`,
-        config
-      );
+      const res = await axios(`${API_PRODUCTS}/${window.location.search}`);
       console.log(res.data);
 
       dispatch({

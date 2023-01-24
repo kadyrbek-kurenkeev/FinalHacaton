@@ -33,11 +33,11 @@ const ProductCard = ({ item }) => {
     useContext(likeContext);
 
   return (
-    <Card sx={{ maxWidth: 350 }}>
+    <Card sx={{ maxWidth: 350, margin: "10px" }}>
       <CardMedia
         component="img"
         height="170"
-        width="270"
+        width="250"
         image={item.image}
         alt={item.name}
       />
@@ -53,10 +53,10 @@ const ProductCard = ({ item }) => {
             {item.author}
           </Typography>
         ) : null}
-        <Typography variant="caption" color="error">
+        <Typography variant="caption" style={{ fontSize: "16px" }} color="dark">
           {item.price}
         </Typography>
-        <div>
+        <div style={{ position: "absolute" }}>
           <Typography variant="body" color="error">
             {item.likes}
           </Typography>
