@@ -53,7 +53,7 @@ const AuthContextProvider = ({ children }) => {
         "token",
         JSON.stringify({ refresh: token.refresh, access: res.data.access })
       );
-      let userName = localStorage.getItem("username");
+      let userName = localStorage.getItem("email");
       setUser(userName);
     } catch (e) {
       console.log(e);
@@ -62,7 +62,7 @@ const AuthContextProvider = ({ children }) => {
 
   function logout() {
     localStorage.removeItem("token");
-    localStorage.removeItem("username");
+    localStorage.removeItem("email");
     setUser("");
     navigate("/login");
   }

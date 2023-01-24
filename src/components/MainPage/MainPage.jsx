@@ -37,7 +37,7 @@ const MainPage = () => {
       <Container>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={3} mt={6}>
-            <Grid item textAlign="center" xs={3}>
+            <Grid item textAlign="center">
               <MDBIcon fas icon="ship" style={{ fontSize: "40px" }} />
               <p
                 className="text-center"
@@ -91,8 +91,8 @@ const MainPage = () => {
             </Grid>
           </Grid>
           <Grid container spacing={2} mt={6}>
-            <Grid xs={4}>
-              <Grid xs={11} style={{ position: "relative" }}>
+            <Grid item xs={4}>
+              <Grid item xs={11} style={{ position: "relative" }}>
                 <div className="bg-image hover-zoom">
                   <img
                     src="https://capricathemes.com/opencart/OPC10/OPC100231/image/catalog/sub-banner-1.jpg"
@@ -126,8 +126,8 @@ const MainPage = () => {
                 </div>
               </Grid>
             </Grid>
-            <Grid xs={4}>
-              <Grid xs={11} style={{ position: "relative" }}>
+            <Grid item xs={4}>
+              <Grid item xs={11} style={{ position: "relative" }}>
                 <div className="bg-image hover-zoom">
                   <img
                     src="https://capricathemes.com/opencart/OPC10/OPC100231/image/catalog/sub-banner-2.jpg"
@@ -161,8 +161,8 @@ const MainPage = () => {
                 </div>
               </Grid>
             </Grid>
-            <Grid xs={4}>
-              <Grid xs={11} style={{ position: "relative" }}>
+            <Grid item xs={4}>
+              <Grid item xs={11} style={{ position: "relative" }}>
                 <div className="bg-image hover-zoom">
                   <img
                     src="https://capricathemes.com/opencart/OPC10/OPC100231/image/catalog/sub-banner-3.jpg"

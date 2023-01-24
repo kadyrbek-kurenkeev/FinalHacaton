@@ -10,6 +10,7 @@ const INIT_STATE = {
   pages: 0,
   oneProduct: {},
   categories: [],
+  productDetails: {},
 };
 
 function reducer(state = INIT_STATE, action) {
@@ -22,6 +23,8 @@ function reducer(state = INIT_STATE, action) {
       };
     case "GET_CATEGORIES":
       return { ...state, categories: action.payload };
+    case "GET_PRODUCT_DETAIL":
+      return { ...state, productDetails: action.payload };
     default:
       return state;
   }
@@ -29,6 +32,7 @@ function reducer(state = INIT_STATE, action) {
 
 const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
+
   const [error, setError] = useState([]);
 
   const navigate = useNavigate();
@@ -80,6 +84,46 @@ const ProductContextProvider = ({ children }) => {
     }
   }
 
+  const getProductDetails = async (id) => {
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Bearer ${token.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios.get(`${API_PRODUCTS}/${id}`, config);
+      dispatch({
+        type: "GET_PRODUCT_DETAIL",
+        payload: res.data,
+      });
+      getProducts();
+    } catch (e) {
+      console.log(e);
+      //~ setError(e.response.data);
+    }
+  };
+
+  const saveEditProduct = async (newProd, id) => {
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Bearer ${token.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+
+      const res = await axios.patch(`${API_PRODUCTS}/${id}`, newProd, config);
+      console.log(res.data);
+      navigate("/products");
+    } catch (e) {
+      console.log(Object.values(e.response.data).flat(5));
+      setError(Object.values(e.response.data));
+    }
+  };
+
   async function addProducts(newProd) {
     try {
       const token = JSON.parse(localStorage.getItem("token"));
@@ -109,11 +153,11 @@ const ProductContextProvider = ({ children }) => {
         },
       };
 
-      const res = await axios(`${API_PRODUCTS}/${id}/toggle_like/`, config);
+      const res = await axios.post(`${API_PRODUCTS}/${id}/like/`, config);
       getProducts();
     } catch (e) {
       console.log(e);
-      //~ setError(e.response.data);
+      // setError(e.response.data);
     }
   }
 
@@ -140,8 +184,11 @@ const ProductContextProvider = ({ children }) => {
     pages: state.pages,
     categories: state.categories,
     error,
+    productDetails: state.productDetails,
 
     getCategories,
+    getProductDetails,
+    saveEditProduct,
     addProducts,
     getProducts,
     toggleLike,
