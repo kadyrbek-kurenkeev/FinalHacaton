@@ -11,6 +11,9 @@ import { IconButton } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { likeContext } from "../Context/LikeContextProvider";
+import { authContext } from "../Context/AuthContext";
+import { Box } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ item }) => {
   const { toggleLike, deleteProduct } = useContext(productContext);
@@ -22,15 +25,19 @@ const ProductCard = ({ item }) => {
     checkProductInCart,
   } = useContext(cartContext);
 
+  const navigate = useNavigate();
+
+  const { user } = useContext(authContext);
+
   const { getLike, addProductToLike, deleteLikeProduct, checkProductInLike } =
     useContext(likeContext);
 
   return (
-    <Card sx={{ maxWidth: 370 }}>
+    <Card sx={{ maxWidth: 350 }}>
       <CardMedia
         component="img"
         height="170"
-        width="370"
+        width="270"
         image={item.image}
         alt={item.name}
       />
@@ -41,9 +48,11 @@ const ProductCard = ({ item }) => {
         <Typography variant="body2" color="text.secondary">
           {item.descriptions}
         </Typography>
-        <Typography variant="caption" color="error">
-          {item.author}
-        </Typography>
+        {user === "dcabatar@gmail.com" ? (
+          <Typography variant="caption" color="error">
+            {item.author}
+          </Typography>
+        ) : null}
         <Typography variant="caption" color="error">
           {item.price}
         </Typography>
@@ -53,19 +62,40 @@ const ProductCard = ({ item }) => {
           </Typography>
         </div>
       </CardContent>
-      <CardActions style={{ display: "flex", justifyContent: "space-between" }}>
+      <CardActions style={{ display: "flex", justifyContent: "space-around" }}>
         <IconButton size="lg" onClick={() => addProductToLike(item)}>
-          <FavoriteIcon color={checkProductInCart(item.id) ? "danger" : ""} />
+          <FavoriteIcon color={checkProductInLike(item.id) ? "warning" : ""} />
         </IconButton>
         <IconButton size="lg" onClick={() => addProductToCart(item)}>
           <ShoppingCartIcon
             color={checkProductInCart(item.id) ? "success" : ""}
           />
         </IconButton>
-        {item.is_author ? (
-          <Button size="" onClick={() => deleteProduct(item.id)}>
-            Delete
-          </Button>
+      </CardActions>
+      <CardActions
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {user === "dcabatar@gmail.com" ? (
+          <Box style={{ display: "flex", justifyContent: "space-between" }}>
+            <Button
+              style={{ color: "primary" }}
+              size=""
+              onClick={() => navigate(`/edit/${item.id}`)}
+            >
+              Edit
+            </Button>
+            <Button
+              style={{ color: "red" }}
+              size=""
+              onClick={() => deleteProduct(item.id)}
+            >
+              Delete
+            </Button>
+          </Box>
         ) : null}
       </CardActions>
     </Card>

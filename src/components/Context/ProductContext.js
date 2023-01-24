@@ -10,6 +10,7 @@ const INIT_STATE = {
   pages: 0,
   oneProduct: {},
   categories: [],
+  productDetails: {},
 };
 
 function reducer(state = INIT_STATE, action) {
@@ -18,10 +19,12 @@ function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         products: action.payload,
-        pages: Math.ceil(action.payload.count / 4),
+        pages: Math.ceil(action.payload.count / 5),
       };
     case "GET_CATEGORIES":
       return { ...state, categories: action.payload };
+    case "GET_PRODUCT_DETAIL":
+      return { ...state, productDetails: action.payload };
     default:
       return state;
   }
@@ -80,6 +83,46 @@ const ProductContextProvider = ({ children }) => {
       // setError(Object.values(e.response.data));
     }
   }
+
+  const getProductDetails = async (id) => {
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Bearer ${token.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios.get(`${API_PRODUCTS}/${id}`, config);
+      dispatch({
+        type: "GET_PRODUCT_DETAIL",
+        payload: res.data,
+      });
+      getProducts();
+    } catch (e) {
+      console.log(e);
+      //~ setError(e.response.data);
+    }
+  };
+
+  const saveEditProduct = async (newProd, id) => {
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Bearer ${token.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+
+      const res = await axios.patch(`${API_PRODUCTS}/${id}`, newProd, config);
+      console.log(res.data);
+      navigate("/products");
+    } catch (e) {
+      console.log(Object.values(e.response.data).flat(5));
+      setError(Object.values(e.response.data));
+    }
+  };
 
   async function addProducts(newProd) {
     try {
@@ -141,8 +184,11 @@ const ProductContextProvider = ({ children }) => {
     pages: state.pages,
     categories: state.categories,
     error,
+    productDetails: state.productDetails,
 
     getCategories,
+    getProductDetails,
+    saveEditProduct,
     addProducts,
     getProducts,
     toggleLike,
