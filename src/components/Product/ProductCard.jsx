@@ -33,13 +33,25 @@ const ProductCard = ({ item }) => {
     useContext(likeContext);
 
   return (
-    <Card sx={{ maxWidth: 350, margin: "10px" }}>
+    <Card
+      sx={{
+        maxWidth: "350px",
+        maxHeight: "650px",
+        margin: "10px",
+        position: "relative",
+        // width: "300px",
+        // height: "400px",
+      }}
+    >
       <CardMedia
         component="img"
-        height="170"
-        width="250"
         image={item.image}
         alt={item.name}
+        style={{
+          objectFit: "fill",
+          height: "280px",
+          width: "280px",
+        }}
       />
       <CardContent style={{ display: "flex", flexDirection: "column" }}>
         <Typography gutterBottom variant="h5" component="div">
@@ -48,15 +60,21 @@ const ProductCard = ({ item }) => {
         <Typography variant="body2" color="text.secondary">
           {item.descriptions}
         </Typography>
-        {user === "dcabatar@gmail.com" ? (
+        <Typography variant="body2" color="text.secondary">
+          Genre: {item.category}
+        </Typography>
+        {user === "admin@admin.com" ? (
           <Typography variant="caption" color="error">
             {item.author}
           </Typography>
         ) : null}
         <Typography variant="caption" style={{ fontSize: "16px" }} color="dark">
-          {item.price}
+          Price: {item.price}
         </Typography>
-        <div style={{ position: "absolute" }}>
+        <Typography variant="caption" style={{ fontSize: "13px" }} color="dark">
+          Number #{item.amount}
+        </Typography>
+        <div style={{ position: "absolute", bottom: "15%", left: "30%" }}>
           <Typography variant="body" color="error">
             {item.likes}
           </Typography>
@@ -79,7 +97,7 @@ const ProductCard = ({ item }) => {
           alignItems: "center",
         }}
       >
-        {user === "dcabatar@gmail.com" ? (
+        {user === "admin@admin.com" ? (
           <Box style={{ display: "flex", justifyContent: "space-between" }}>
             <Button
               style={{ color: "primary" }}

@@ -57,7 +57,7 @@ const Edit = () => {
 
   return (
     <div>
-      {user === "dcabatar@gmail.com" ? (
+      {user === "admin@admin.com" ? (
         <Box
           sx={{
             width: "40vw",
@@ -121,23 +121,6 @@ const Edit = () => {
             value={product.amount || ""}
             onChange={handleInp}
           />
-          {/* <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Category</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            label="сфеупщкн"
-            onChange={handleInp}
-            value={product.category}
-            name="category"
-          >
-            {categories?.map((item) => (
-              <MenuItem value={item.id} key={item.id}>
-                {item.title}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl> */}
           <TextField
             sx={{ m: 1 }}
             id="standard-basic"

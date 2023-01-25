@@ -7,14 +7,9 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import Shop2Icon from "@mui/icons-material/Shop2";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import SpeedIcon from "@mui/icons-material/Speed";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { authContext } from "./Context/AuthContext";
 import {
   MDBDropdown,
@@ -149,17 +144,7 @@ function Navbar() {
                   <Box
                     sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
                   >
-                    {/* {pages.map((page) => (
-                      <Button
-                        key={page}
-                        onClick={handleCloseNavMenu}
-                        sx={{ my: 2, color: "white", display: "block" }}
-                      >
-                        {page}
-                      </Button>
-                    ))} */}
-
-                    {user === "dcabatar@gmail.com" ? (
+                    {user === "admin@admin.com" ? (
                       <MDBDropdownItem link>
                         <>
                           <Button

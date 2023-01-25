@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { createContext, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_CATEGORY, API_PRODUCTS } from "../../helper";
+import { API_PRODUCTS } from "../../helper";
 
 export const productContext = createContext();
 
@@ -19,12 +19,12 @@ function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         products: action.payload,
-        pages: Math.ceil(action.payload.length / 8),
+        pages: Math.ceil(action.payload.length / 6),
       };
-    case "GET_CATEGORIES":
-      return { ...state, categories: action.payload };
     case "GET_PRODUCT_DETAIL":
       return { ...state, productDetails: action.payload };
+    // case "GET_CATEGORIES":
+    //   return { ...state, categories: action.payload };
     default:
       return state;
   }
@@ -51,27 +51,27 @@ const ProductContextProvider = ({ children }) => {
     }
   }
 
-  async function getCategories() {
-    try {
-      const token = JSON.parse(localStorage.getItem("token"));
-      const Authorization = `Bearer ${token.access}`;
-      const config = {
-        headers: {
-          Authorization,
-        },
-      };
+  // async function getCategories() {
+  //   try {
+  //     const token = JSON.parse(localStorage.getItem("token"));
+  //     const Authorization = `Bearer ${token.access}`;
+  //     const config = {
+  //       headers: {
+  //         Authorization,
+  //       },
+  //     };
 
-      const res = await axios(`${API_CATEGORY}/list/`, config);
+  //     const res = await axios(`${API_CATEGORY}/list/`, config);
 
-      dispatch({
-        type: "GET_CATEGORIES",
-        payload: res.data.results,
-      });
-    } catch (e) {
-      console.log(e);
-      // setError(Object.values(e.response.data));
-    }
-  }
+  //     dispatch({
+  //       type: "GET_CATEGORIES",
+  //       payload: res.data,
+  //     });
+  //   } catch (e) {
+  //     console.log(e);
+  //     // setError(Object.values(e.response.data));
+  //   }
+  // }
 
   const getProductDetails = async (id) => {
     try {
@@ -175,7 +175,7 @@ const ProductContextProvider = ({ children }) => {
     error,
     productDetails: state.productDetails,
 
-    getCategories,
+    // getCategories,
     getProductDetails,
     saveEditProduct,
     addProducts,

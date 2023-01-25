@@ -1,33 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  Alert,
-  Box,
-  Button,
-  FormControl,
-  Input,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Alert, Box, Button, TextField, Typography } from "@mui/material";
 import { authContext } from "../Context/AuthContext";
 import { productContext } from "../Context/ProductContext";
 import { MDBFile } from "mdb-react-ui-kit";
 
 const AddProduct = () => {
   const { user } = useContext(authContext);
-  const { addProducts, error, categories, getCategories } =
-    useContext(productContext);
+  const { addProducts, error } = useContext(productContext);
 
-  useEffect(() => {
-    getCategories();
-  }, []);
+  // useEffect(() => {
+  //   getCategories();
+  // }, []);
 
   const [product, setProduct] = useState({
     name: "",
     author: "",
-    description: "",
+    descriptions: "",
     price: "",
     category: "",
     image: "",
@@ -52,7 +40,7 @@ const AddProduct = () => {
     let newProduct = new FormData();
     newProduct.append("name", product.name);
     newProduct.append("author", product.author);
-    newProduct.append("description", product.description);
+    newProduct.append("descriptions", product.descriptions);
     newProduct.append("price", product.price);
     newProduct.append("category", product.category);
     newProduct.append("image", product.image);
@@ -63,7 +51,7 @@ const AddProduct = () => {
 
   return (
     <div>
-      {user === "dcabatar@gmail.com" ? (
+      {user === "admin@admin.com" ? (
         <Box
           sx={{
             width: "40vw",
@@ -100,11 +88,11 @@ const AddProduct = () => {
           <TextField
             sx={{ m: 1 }}
             id="standard-basic"
-            label="Description"
+            label="Descriptions"
             variant="outlined"
             fullWidth
-            name="description"
-            value={product.description}
+            name="descriptions"
+            value={product.descriptions}
             onChange={handleInp}
           />
           <TextField
@@ -127,23 +115,6 @@ const AddProduct = () => {
             value={product.amount}
             onChange={handleInp}
           />
-          {/* <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Category</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            label="сфеупщкн"
-            onChange={handleInp}
-            value={product.category}
-            name="category"
-          >
-            {categories?.map((item) => (
-              <MenuItem value={item.id} key={item.id}>
-                {item.title}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl> */}
           <TextField
             sx={{ m: 1 }}
             id="standard-basic"
