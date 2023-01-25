@@ -48,7 +48,7 @@ const ProductContextProvider = ({ children }) => {
       };
 
       const res = await axios(
-        `${API_PRODUCTS}/product/`,
+        `${API_PRODUCTS}/`,
         config
       );
       console.log(res.data);

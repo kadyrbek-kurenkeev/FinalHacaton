@@ -41,7 +41,7 @@ const ProductCard = ({ item }) => {
         image={item.image}
         alt={item.name}
       />
-      <CardContent style={{ display: "flex", flexDirection: "column" }}>
+      <CardContent style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }} >
         <Typography gutterBottom variant="h5" component="div">
           {item.name}
         </Typography>
