@@ -1,4 +1,4 @@
-import { Pagination, Typography } from "@mui/material";
+import { Pagination } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -30,8 +30,8 @@ const ProductList = () => {
   }, [currentPage]);
 
   function currentData() {
-    const begin = (currentPage - 1) * 8;
-    const end = begin + 8;
+    const begin = (currentPage - 1) * 6;
+    const end = begin + 6;
     return products.slice(begin, end);
   }
 
